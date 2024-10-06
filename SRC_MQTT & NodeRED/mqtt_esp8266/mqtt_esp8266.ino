@@ -23,8 +23,8 @@
 
 // Update these with values suitable for your network.
 
-const char* ssid = "KaraFarm";
-const char* password = "KaraFarm";
+const char* ssid = ".......";
+const char* password = ".......";
 const char* mqtt_server = "broker.mqtt-dashboard.com";
 
 WiFiClient espClient;
@@ -89,9 +89,9 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("dsit/karafarm/out", "hello world");
+      client.publish("dsit/smartfarm1/out", "hello world");
       // ... and resubscribe
-      client.subscribe("dsit/karafarm/in");
+      client.subscribe("dsit/smartfarm1/in");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -124,6 +124,6 @@ void loop() {
     snprintf (msg, MSG_BUFFER_SIZE, "hello world #%ld", value);
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("dsit/karafarm/out", msg);
+    client.publish("dsit/smartfarm1/out", msg);
   }
 }
