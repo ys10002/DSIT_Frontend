@@ -63,7 +63,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Create a random client ID
-    String clientId = "ESP8266Client-";
+    String clientId = "R4Client-";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
     if (client.connect(clientId.c_str())) {
@@ -108,6 +108,6 @@ void loop() {
                     + "," + String(sensor3);
     result.toCharArray(msg, result.length());
 
-    client.publish("dsit/karafarm/out", msg);
+    client.publish("dsit/smartfarm1/out", msg);
   }
 }
