@@ -98,12 +98,16 @@ void loop() {
   client.loop();
 
   unsigned long now = millis();
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 10000) {
     lastMsg = now;
-    ++value;
-    snprintf (msg, MSG_BUFFER_SIZE, "hello world #%ld", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("dsit/smartfarm1/out", msg);
+
+    int sensor1 = random(0, 1023);
+    int sensor2 = random(0, 1023);
+    int sensor3 = random(0, 1023);
+    String result = String(sensor1) + "," + String(sensor2)
+                    + "," + String(sensor3);
+    result.toCharArray(msg, result.length());
+
+    client.publish("dsit/karafarm/out", msg);
   }
 }
